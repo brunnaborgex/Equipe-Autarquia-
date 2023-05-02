@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Codificador de Texto</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		h1 {
+			color: #4d4d4d;
+			text-align: center;
+		}
+		label {
+			display: block;
+			margin-top: 10px;
+			color: #4d4d4d;
+		}
+		input[type="text"] {
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			width: 100%;
+			box-sizing: border-box;
+			font-size: 16px;
+			margin-top: 5px;
+		}
+		button {
+			padding: 10px;
+			background-color: #4d4d4d;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			margin-top: 10px;
+			transition: background-color 0.3s ease;
+		}
+		button:hover {
+			background-color: #333;
+		}
+		#output {
+			margin-top: 10px;
+		}
+	</style>
+	<script>
+		function codificar() {
+			// Obter o valor do input
+			var texto = document.getElementById("texto").value;
+			
+			// Deslocar as letras
+			var deslocado = "";
+			for (var i = 0; i < texto.length; i++) {
+				var letra = texto
+			// Deslocar as letras
+			var deslocado = "";
+			for (var i = 0; i < texto.length; i++) {
+				var letra = texto.charAt(i);
+				if (letra.match(/[a-zA-Z]/)) {
+					deslocado += String.fromCharCode(letra.charCodeAt(0) + 3);
+				} else {
+					deslocado += letra;
+				}
+			}
+    }
+			
+			// Inverter a linha
+			var invertido = deslocado.split("").reverse().join("");
+			
+			// Deslocar os caracteres da metade em diante
+			var metade = Math.floor(invertido.length / 2);
+			var final = "";
+			for (var i = 0; i < invertido.length; i++) {
+				if (i >= metade) {
+					final += String.fromCharCode(invertido.charCodeAt(i) - 1);
+				} else {
+					final += invertido.charAt(i);
+				}
+			}
+			
+			// Atualizar o valor do output
+			document.getElementById("output").value = final;
+		}
+	</script>
+</head>
+<body>
+	<h1>Codificador de Texto</h1>
+	<label for="texto">Digite o texto que deseja codificar:</label>
+	<input type="text" id="texto">
+	<button onclick="codificar()">Codificar</button>
+	<label for="output">Texto codificado:</label>
+	<input type="text" id="output" readonly>
+</body>
+</html>
